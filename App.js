@@ -1,13 +1,32 @@
 import React from 'react';
+import { AsyncStorage } from "react-native"
 import { StyleSheet, Text, View } from 'react-native';
 
 export default class App extends React.Component {
+  state = {
+
+  }
+
+  retrieveKeys = async () => {
+    try{
+      const keys = await AsyncStorage.getAllKeys();
+      if(keys !== null){
+        alert(JSON.stringify(keys));
+      }
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
+  componentDidMount() {
+    this.retrieveKeys();
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
       </View>
     );
   }
