@@ -27,7 +27,7 @@ export default class App extends React.Component {
   // save a single item in storage
   storeSingleItem = async () => {
     try{
-      await AsyncStorage.setItem("KEY34567890", "I'm a value");
+      await AsyncStorage.setItem("Geography", JSON.stringify({lesson:"geo", teacher:"mark"}));
     }
     catch(error){
       console.log(error);
@@ -49,7 +49,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // this.storeSingleItem();
+    this.storeSingleItem();
     this.retrieveKeys();
   }
 
