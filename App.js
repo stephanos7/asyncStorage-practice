@@ -7,6 +7,16 @@ export default class App extends React.Component {
 
   }
 
+  // save a single item in storage
+  storeSingleItem = async () => {
+    try {
+      await AsyncStorage.setItem('KEY123456', 'I like to save it.');
+    } catch (error) {
+      // Error saving data
+    }
+  }
+
+  // get all keys available in asyncStorage
   retrieveKeys = async () => {
     try{
       const keys = await AsyncStorage.getAllKeys();
@@ -20,6 +30,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    this.storeSingleItem();
     this.retrieveKeys();
   }
 
