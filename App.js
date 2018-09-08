@@ -34,6 +34,20 @@ export default class App extends React.Component {
     }
   }
 
+  // get a specific item from storage - pair of key and value
+  getSingleItem = async () => {
+    try{
+      const WhatIgotBack = await AsyncStorage.getItem("Geography");
+      if(WhatIgotBack !== (null || "")){
+        const parsedRes = await JSON.parse(WhatIgotBack);
+        alert(JSON.stringify(parsedRes));
+      }
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
   // get all keys available in asyncStorage
   retrieveKeys = async () => {
     try{
@@ -58,6 +72,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
         <Button title="clear storage" onPress={this.removeSingleItem}/>
+        <Button title="get Single Item" onPress={this.getSingleItem}/>
       </View>
     );
   }
